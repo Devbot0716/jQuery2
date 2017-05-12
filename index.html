@@ -15,9 +15,28 @@
 			<div class="logo-container">
 				<img class="logo" src="./img/icons/check-box.png" alt="Check box image">
 			</div>
-			<div class="time-container">
-				<img class="time" src="./img/time.png" alt="countdown">
-			</div>
+			<script type="text/javascript">
+function GetClock(){
+var d=new Date();
+var nhour=d.getHours(),nmin=d.getMinutes(),nsec=d.getSeconds(),ap;
+
+if(nhour==0){ap=" AM";nhour=12;}
+else if(nhour<12){ap=" AM";}
+else if(nhour==12){ap=" PM";}
+else if(nhour>12){ap=" PM";nhour-=12;}
+
+if(nmin<=9) nmin="0"+nmin;
+if(nsec<=9) nsec="0"+nsec;
+
+document.getElementById('clockbox').innerHTML=""+nhour+":"+nmin+":"+nsec+ap+"";
+}
+
+window.onload=function(){
+GetClock();
+setInterval(GetClock,1000);
+}
+</script>
+<div id="clockbox"></div>
 		</header>
 	</section>
 
@@ -26,14 +45,33 @@
 		<div
 		class="progress-box"
 		id="newList">
-			<h3>New To Dos</h3>
+			<h3>New 'To Do Item'</h3>
 		</div>
 
 		<!--Add progress-box from the reademe-->
+		<div class="progress-box">
+		<h3>Workin' on it</h3>
+		<ul class="list-group" id="currentList"></ul>
+		</div>
+		<div>
+		</div>
+
+		<div class="progress-box">
+		<h3>Done!</h3>
+		<ul class="list-group" id="archivedList"></ul>
+		</div>
 	</section>
 
 	<!-- FORM -->
 	<!--Add new task form here -->
+	<section id="newTaskForm">
+		<h3 class="todo-form-title">New 'To Do' </h3>
+		<div  class="form-input-container">
+			<img id="cancel" src="./img/icons/cross.png" alt="close form icon">
+			<input id="newItemInput" class="todo-title-input form-input" type="text" placeholder="To-Do Title">
+			<button  id="saveNewItem" class="complete-todo-button">Add To Do</button>
+		</div>
+	</section>
 
 	<!-- FOOTER -->
 	<footer class="todo-footer">
@@ -44,6 +82,7 @@
 	<!--jQuery-->
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<!--INclude your script file here -->
+	<script src="./app/scripts/scripts.js"></script>
 </main>
 </body>
 </html>
